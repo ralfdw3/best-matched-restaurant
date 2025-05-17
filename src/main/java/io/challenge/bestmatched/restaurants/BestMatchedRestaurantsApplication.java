@@ -1,4 +1,4 @@
-package io.challenge.best_matched_restaurants;
+package io.challenge.bestmatched.restaurants;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package io.challenge.best_matched_restaurants;
+package io.challenge.bestmatched.restaurants;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
