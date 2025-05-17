@@ -1,0 +1,10 @@
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: bestmatchedrestaurants
+    ports:
+      - "5432:5432"
