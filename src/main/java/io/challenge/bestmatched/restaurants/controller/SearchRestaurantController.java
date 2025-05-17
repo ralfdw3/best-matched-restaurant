@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/search/")
 @RequiredArgsConstructor
-public class SearchRestaurantController {
+public class SearchRestaurantController implements SearchRestaurantControllerDocumentation{
     private final SearchRestaurantService searchRestaurantService;
 
     @GetMapping("/restaurants")
