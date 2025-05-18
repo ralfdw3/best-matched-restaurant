@@ -24,6 +24,11 @@ public class CsvLoader {
     private final CuisineRepository cuisineRepository;
 
     @PostConstruct
+    private void loadDatabase() {
+        loadCuisines();
+        loadRestaurants();
+    }
+
     private void loadCuisines() {
         final InputStream inputStream = getClass().getResourceAsStream("/cuisines.csv");
         final List<Cuisine> cuisines = new ArrayList<>();
@@ -43,7 +48,6 @@ public class CsvLoader {
         cuisineRepository.saveAll(cuisines);
     }
 
-    @PostConstruct
     private void loadRestaurants() {
         final InputStream inputStream = getClass().getResourceAsStream("/restaurants.csv");
         final List<Restaurant> restaurants = new ArrayList<>();
