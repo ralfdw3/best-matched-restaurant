@@ -1,27 +1,27 @@
-package io.challenge.bestmatched.restaurants.service.filterstrategy;
+package io.challenge.bestmatched.restaurants.service.filters;
 
 import io.challenge.bestmatched.restaurants.dto.SearchRestaurantInput;
 import io.challenge.bestmatched.restaurants.model.Restaurant;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Predicate;
-import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.*;
 import org.springframework.stereotype.Component;
 
-import static java.util.Objects.nonNull;
+import static ch.qos.logback.core.util.StringUtil.notNullNorEmpty;
 
 @Component
-public class PriceFilter implements FilterStrategy {
+public class CuisineFilter implements FilterStrategy {
     @Override
     public Predicate createFilterPredicate(final Root<Restaurant> root,
                                            final CriteriaQuery<?> query,
                                            final CriteriaBuilder builder,
                                            final SearchRestaurantInput input) {
-        return builder.lessThanOrEqualTo(root.get("price"), input.price());
+        final Expression<String> expression = builder.lower(root.get("cuisine").get("name"));
+        final String pattern = "%" + input.cuisine().toLowerCase() + "%";
+
+        return builder.like(expression, pattern);
     }
 
     @Override
     public boolean shouldBeFiltered(final SearchRestaurantInput input) {
-        return nonNull(input.price());
+        return notNullNorEmpty(input.cuisine());
     }
 }

@@ -1,4 +1,4 @@
-package io.challenge.bestmatched.restaurants.service.filterstrategy;
+package io.challenge.bestmatched.restaurants.service.filters;
 
 import io.challenge.bestmatched.restaurants.dto.SearchRestaurantInput;
 import io.challenge.bestmatched.restaurants.model.Restaurant;

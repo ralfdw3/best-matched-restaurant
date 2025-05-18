@@ -1,4 +1,4 @@
-package io.challenge.bestmatched.restaurants.service.filterstrategy;
+package io.challenge.bestmatched.restaurants.service.filters;
 
 import io.challenge.bestmatched.restaurants.dto.SearchRestaurantInput;
 import io.challenge.bestmatched.restaurants.model.Restaurant;
@@ -11,17 +11,17 @@ import org.springframework.stereotype.Component;
 import static java.util.Objects.nonNull;
 
 @Component
-public class DistanceFilter implements FilterStrategy {
+public class CustomerRatingFilter implements FilterStrategy {
     @Override
     public Predicate createFilterPredicate(final Root<Restaurant> root,
                                            final CriteriaQuery<?> query,
                                            final CriteriaBuilder builder,
                                            final SearchRestaurantInput input) {
-        return builder.lessThanOrEqualTo(root.get("distance"), input.distance());
+        return builder.greaterThanOrEqualTo(root.get("customerRating"), input.customerRating());
     }
 
     @Override
     public boolean shouldBeFiltered(final SearchRestaurantInput input) {
-        return nonNull(input.distance());
+        return nonNull(input.customerRating());
     }
 }

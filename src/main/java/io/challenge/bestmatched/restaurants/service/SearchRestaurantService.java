@@ -4,7 +4,7 @@ import io.challenge.bestmatched.restaurants.dto.SearchRestaurantInput;
 import io.challenge.bestmatched.restaurants.dto.SearchRestaurantOutput;
 import io.challenge.bestmatched.restaurants.model.Restaurant;
 import io.challenge.bestmatched.restaurants.repository.RestaurantRepository;
-import io.challenge.bestmatched.restaurants.service.filterstrategy.FilterStrategy;
+import io.challenge.bestmatched.restaurants.service.filters.FilterStrategy;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
