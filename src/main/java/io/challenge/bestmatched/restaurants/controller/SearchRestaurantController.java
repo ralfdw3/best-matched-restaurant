@@ -15,7 +15,7 @@ import java.util.List;
 public class SearchRestaurantController implements SearchRestaurantControllerDocumentation{
     private final SearchRestaurantService searchRestaurantService;
 
-    @GetMapping("/restaurants")
+    @PostMapping("/restaurants")
     public List<SearchRestaurantOutput> searchRestaurants(@RequestBody @Valid final SearchRestaurantInput input) {
         return searchRestaurantService.searchRestaurants(input);
     }
