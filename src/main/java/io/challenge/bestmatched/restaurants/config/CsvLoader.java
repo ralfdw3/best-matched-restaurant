@@ -24,7 +24,7 @@ public class CsvLoader {
     private final CuisineRepository cuisineRepository;
 
     @PostConstruct
-    private void loadDatabase() {
+    public void loadDatabase() {
         loadCuisines();
         loadRestaurants();
     }
