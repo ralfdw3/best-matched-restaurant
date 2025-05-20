@@ -1,7 +1,7 @@
 package io.challenge.bestmatched.restaurants.controller;
 
 import io.challenge.bestmatched.restaurants.dto.SearchRestaurantOutput;
-import io.challenge.bestmatched.restaurants.service.SearchRestaurantService;
+import io.challenge.bestmatched.restaurants.service.RestaurantService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 class SearchRestaurantControllerTest {
 
     @Mock
-    private SearchRestaurantService searchRestaurantService;
+    private RestaurantService restaurantService;
 
     @InjectMocks
     private SearchRestaurantController searchRestaurantController;
@@ -28,7 +28,7 @@ class SearchRestaurantControllerTest {
     @Test
     void shouldReturnRestaurantsWhenSearchIsSuccessful() {
         final SearchRestaurantOutput expected = createSearchRestaurantOutputDefault().build();
-        when(searchRestaurantService.searchRestaurants(any())).thenReturn(List.of(expected));
+        when(restaurantService.searchRestaurants(any())).thenReturn(List.of(expected));
 
         final List<SearchRestaurantOutput> result = searchRestaurantController.searchRestaurants(createSearchRestaurantInputDefault().build());
 

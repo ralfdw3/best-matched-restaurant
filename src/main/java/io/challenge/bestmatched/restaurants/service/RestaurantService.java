@@ -25,7 +25,7 @@ import static java.util.Comparator.reverseOrder;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class SearchRestaurantService {
+public class RestaurantService {
     private static final int MAX_SIZE = 5;
     private final RestaurantRepository restaurantRepository;
     private final List<FilterStrategy> filterStrategies;

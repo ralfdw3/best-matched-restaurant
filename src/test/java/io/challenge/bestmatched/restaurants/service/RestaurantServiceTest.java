@@ -20,16 +20,16 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class SearchRestaurantServiceTest {
+class RestaurantServiceTest {
 
     @Mock
     private RestaurantRepository restaurantRepository;
 
-    private SearchRestaurantService searchRestaurantService;
+    private RestaurantService restaurantService;
 
     @BeforeEach
     void setUp() {
-        searchRestaurantService = new SearchRestaurantService(restaurantRepository, emptyList());
+        restaurantService = new RestaurantService(restaurantRepository, emptyList());
     }
 
     @Test
@@ -47,7 +47,7 @@ class SearchRestaurantServiceTest {
                                 .build()
                 ));
 
-        final List<SearchRestaurantOutput> result = searchRestaurantService.searchRestaurants(createSearchRestaurantInputDefault().build());
+        final List<SearchRestaurantOutput> result = restaurantService.searchRestaurants(createSearchRestaurantInputDefault().build());
 
         assertThat(result).hasSize(3);
         assertThat(result.get(0).distance()).isEqualTo(1);
@@ -64,7 +64,7 @@ class SearchRestaurantServiceTest {
                         createMediumRestaurant().build()
                 ));
 
-        final List<SearchRestaurantOutput> result = searchRestaurantService.searchRestaurants(createSearchRestaurantInputDefault().build());
+        final List<SearchRestaurantOutput> result = restaurantService.searchRestaurants(createSearchRestaurantInputDefault().build());
 
         assertThat(result).hasSize(3);
         assertThat(result.get(0).restaurant()).isEqualTo("Excellent");
@@ -87,7 +87,7 @@ class SearchRestaurantServiceTest {
                                 .build()
                 ));
 
-        final List<SearchRestaurantOutput> result = searchRestaurantService.searchRestaurants(createSearchRestaurantInputDefault().build());
+        final List<SearchRestaurantOutput> result = restaurantService.searchRestaurants(createSearchRestaurantInputDefault().build());
 
         assertThat(result).hasSize(3);
         assertThat(result.get(0).price()).isEqualTo(ONE);
@@ -104,7 +104,7 @@ class SearchRestaurantServiceTest {
                 .restaurant("NonExistent")
                 .build();
 
-        final List<SearchRestaurantOutput> result = searchRestaurantService.searchRestaurants(input);
+        final List<SearchRestaurantOutput> result = restaurantService.searchRestaurants(input);
 
         assertThat(result).isEmpty();
     }
@@ -122,7 +122,7 @@ class SearchRestaurantServiceTest {
                         createBadRestaurant().build()
                 ));
 
-        final List<SearchRestaurantOutput> result = searchRestaurantService.searchRestaurants(createSearchRestaurantInputDefault().build());
+        final List<SearchRestaurantOutput> result = restaurantService.searchRestaurants(createSearchRestaurantInputDefault().build());
 
         assertThat(result).hasSize(5);
     }
