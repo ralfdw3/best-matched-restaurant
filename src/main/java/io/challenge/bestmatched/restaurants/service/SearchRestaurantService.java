@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Function;
 
 import static java.util.Comparator.comparing;
 import static java.util.Comparator.reverseOrder;
@@ -57,8 +58,11 @@ public class SearchRestaurantService {
     private static Comparator<Restaurant> buildOrderComparator() {
         return comparing(Restaurant::getDistance)
                 .thenComparing(Restaurant::getCustomerRating, reverseOrder())
-                .thenComparing(Restaurant::getDistance, reverseOrder())
                 .thenComparing(Restaurant::getPrice)
-                .thenComparing(r -> UUID.randomUUID());
+                .thenComparing(getRandomRestaurant());
+    }
+
+    private static Function<Restaurant, UUID> getRandomRestaurant() {
+        return restaurant -> UUID.randomUUID();
     }
 }
