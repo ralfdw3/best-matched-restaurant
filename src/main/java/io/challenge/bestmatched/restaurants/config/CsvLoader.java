@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Function;
 
 import static java.lang.Integer.parseInt;
 import static java.lang.Long.parseLong;
@@ -31,42 +32,50 @@ public class CsvLoader {
 
     private void loadCuisines() {
         final InputStream inputStream = getClass().getResourceAsStream("/cuisines.csv");
-        final List<Cuisine> cuisines = new ArrayList<>();
         try (Scanner scanner = new Scanner(inputStream)) {
-            if (scanner.hasNextLine()) scanner.nextLine();
-            while (scanner.hasNextLine()) {
-                final String line = scanner.nextLine();
-                final String[] fields = line.split(",");
-                final Cuisine cuisine = Cuisine.builder()
-                        .id(parseLong(fields[0]))
-                        .name(fields[1])
-                        .build();
-
-                cuisines.add(cuisine);
-            }
+            readAndIgnoreHeader(scanner);
+            cuisineRepository.saveAll(readCsvFileToEntities(scanner, buildCuisineMapperFunction()));
         }
-        cuisineRepository.saveAll(cuisines);
     }
 
     private void loadRestaurants() {
         final InputStream inputStream = getClass().getResourceAsStream("/restaurants.csv");
-        final List<Restaurant> restaurants = new ArrayList<>();
         try (Scanner scanner = new Scanner(inputStream)) {
-            if (scanner.hasNextLine()) scanner.nextLine();
-            while (scanner.hasNextLine()) {
-                final String line = scanner.nextLine();
-                final String[] fields = line.split(",");
-                final Restaurant restaurant = Restaurant.builder()
-                        .name(fields[0])
-                        .customerRating(parseInt(fields[1]))
-                        .distance(parseInt(fields[2]))
-                        .price(new BigDecimal(fields[3]))
-                        .cuisine(cuisineRepository.findById(parseLong(fields[4])).orElseThrow())
-                        .build();
-
-                restaurants.add(restaurant);
-            }
+            readAndIgnoreHeader(scanner);
+            restaurantRepository.saveAll(readCsvFileToEntities(scanner, buildRestaurantMapperFunction()));
         }
-        restaurantRepository.saveAll(restaurants);
+    }
+
+    private static void readAndIgnoreHeader(final Scanner scanner) {
+        if (scanner.hasNextLine()) scanner.nextLine();
+    }
+
+    private static <T> List<T> readCsvFileToEntities(final Scanner scanner, final Function<String[], T> mapper) {
+        final List<T> entities = new ArrayList<>();
+
+        while (scanner.hasNextLine()) {
+            final String line = scanner.nextLine();
+            final String[] fields = line.split(",");
+            entities.add(mapper.apply(fields));
+        }
+
+        return entities;
+    }
+
+    private static Function<String[], Cuisine> buildCuisineMapperFunction() {
+        return fields -> Cuisine.builder()
+                .id(parseLong(fields[0]))
+                .name(fields[1])
+                .build();
+    }
+
+    private Function<String[], Restaurant> buildRestaurantMapperFunction() {
+        return fields -> Restaurant.builder()
+                .name(fields[0])
+                .customerRating(parseInt(fields[1]))
+                .distance(parseInt(fields[2]))
+                .price(new BigDecimal(fields[3]))
+                .cuisine(cuisineRepository.findById(parseLong(fields[4])).orElseThrow())
+                .build();
     }
 }
