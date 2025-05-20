@@ -10,10 +10,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.ActiveProfiles;
 
-import static io.challenge.bestmatched.restaurants.util.DataFactory.CUISINE_AMERICAN;
-import static io.challenge.bestmatched.restaurants.util.DataFactory.INT_THREE;
+import static io.challenge.bestmatched.restaurants.util.DataFactory.*;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.OK;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
@@ -48,8 +49,8 @@ class SearchRestaurantFunctionalTest {
                 .when()
                 .post(URL_PATH)
                 .then()
-                .statusCode(200)
-                .body("[0].restaurant", equalTo("Deliciousscape"))
+                .statusCode(OK.value())
+                .body("[0].restaurant", equalTo(RESTAURANT_DELICIOUSSCAPE))
                 .body("[0].customerRating", equalTo(INT_THREE))
                 .body("[0].distance", equalTo(7))
                 .body("[0].price", equalTo(50F))
@@ -59,7 +60,7 @@ class SearchRestaurantFunctionalTest {
     @ParameterizedTest
     @ValueSource(strings = {"customerRating", "distance", "price"})
     void shouldReturnBadRequestWhenCustomerRatingIsString(String parameter) {
-        String requestBody = """
+        final String requestBody = """
                 {
                     "%s": "shouldntBeAStringHere"
                 }
@@ -71,14 +72,16 @@ class SearchRestaurantFunctionalTest {
                 .when()
                 .post(URL_PATH)
                 .then()
-                .statusCode(400)
-                .body(DETAIL, containsString("The request body is invalid or malformed."));
+                .statusCode(BAD_REQUEST.value())
+                .body(DETAIL, equalTo("The request body is invalid or malformed."));
     }
 
     @Test
-    void shouldReturnBadRequestWhenPriceIsNegative() {
-        String requestBody = """
+    void shouldReturnBadRequestWithSeveralValidationErrors() {
+        final String requestBody = """
                 {
+                    "customerRating": 0,
+                    "distance": 11,
                     "price": -30
                 }
                 """;
@@ -89,13 +92,15 @@ class SearchRestaurantFunctionalTest {
                 .when()
                 .post(URL_PATH)
                 .then()
-                .statusCode(400)
+                .statusCode(BAD_REQUEST.value())
+                .body(DETAIL, containsString("Customer rating must be at least 1"))
+                .body(DETAIL, containsString("Distance must be at most 10"))
                 .body(DETAIL, containsString("Price must be at least 1"));
     }
 
     @Test
     void shouldReturnEmptyListWhenNoRestaurantsMatch() {
-        String requestBody = """
+        final String requestBody = """
                 {
                     "restaurant": "NonExistentRestaurant"
                 }
@@ -107,7 +112,7 @@ class SearchRestaurantFunctionalTest {
                 .when()
                 .post(URL_PATH)
                 .then()
-                .statusCode(200)
+                .statusCode(OK.value())
                 .body("$", empty());
     }
 }
