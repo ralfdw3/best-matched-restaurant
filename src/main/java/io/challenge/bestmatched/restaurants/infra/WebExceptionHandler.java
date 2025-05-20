@@ -41,7 +41,7 @@ public class WebExceptionHandler {
         final ProblemDetail problemDetail = ProblemDetail.forStatus(BAD_REQUEST);
         final String errors = exception.getBindingResult().getFieldErrors().stream()
                 .map(fieldError -> "%s: %s".formatted(fieldError.getField(), fieldError.getDefaultMessage()))
-                .collect(joining(","));
+                .collect(joining(", "));
 
         problemDetail.setTitle(INVALID_REQUEST);
         problemDetail.setProperty(TIMESTAMP, LocalDateTime.now());
