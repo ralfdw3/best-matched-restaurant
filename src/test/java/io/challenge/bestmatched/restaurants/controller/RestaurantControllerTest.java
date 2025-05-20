@@ -17,20 +17,20 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class SearchRestaurantControllerTest {
+class RestaurantControllerTest {
 
     @Mock
     private RestaurantService restaurantService;
 
     @InjectMocks
-    private SearchRestaurantController searchRestaurantController;
+    private RestaurantController restaurantController;
 
     @Test
     void shouldReturnRestaurantsWhenSearchIsSuccessful() {
         final SearchRestaurantOutput expected = createSearchRestaurantOutputDefault().build();
         when(restaurantService.searchRestaurants(any())).thenReturn(List.of(expected));
 
-        final List<SearchRestaurantOutput> result = searchRestaurantController.searchRestaurants(createSearchRestaurantInputDefault().build());
+        final List<SearchRestaurantOutput> result = restaurantController.searchRestaurants(createSearchRestaurantInputDefault().build());
 
         assertThat(result).hasSize(1);
         assertThat(result.getFirst()).isEqualTo(expected);

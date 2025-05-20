@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-public interface SearchRestaurantControllerDocumentation {
+public interface RestaurantControllerDocumentation {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = {
                     @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, array = @ArraySchema(schema =
