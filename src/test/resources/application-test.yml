@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:bestmatchedrestaurants;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;
+    username: root
+    password: root
+    driverClassName: org.h2.Driver
+
+logging:
+  level:
+    org.springframework: ERROR
+    io.challenge.bestmatched: ERROR
