@@ -3,6 +3,12 @@
 A Spring Boot application that helps users find the best-matched restaurants based on various criteria such as cuisine
 type, customer rating, distance, and price.
 
+## Technologies Used
+- Java 21
+- Spring Boot 3.4.5
+- Gradle 8.3
+- Docker
+
 ## Project Structure
 
 ```
