@@ -53,7 +53,7 @@ src/
 3. Access the swagger:
 
    ```html
-   https://localhost:8080/swagger-ui.html
+   http://localhost:8080/swagger-ui.html
    ```
 
 The application will start on port 8080 by default.
