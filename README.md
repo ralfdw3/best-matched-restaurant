@@ -44,13 +44,19 @@ src/
    cd best-matched-restaurant
    ```
 
-2. Run docker:
+2. Build application:
+
+   ```bash
+   ./gradlew build
+   ```
+
+3. Run docker:
 
    ```bash
    docker compose up -d
    ```
 
-3. Access the swagger:
+4. Access swagger's interface:
 
    ```html
    http://localhost:8080/swagger-ui.html
