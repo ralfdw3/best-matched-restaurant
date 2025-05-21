@@ -43,7 +43,7 @@ src/
 
 ## Running the Application
 
-1. Clone the repository:
+1. Clone the repository or extract zip file:
 
    ```bash
    git clone https://github.com/ralfdw3/best-matched-restaurant.git
