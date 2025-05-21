@@ -49,15 +49,10 @@ src/
    docker compose up -d
    ```
 
-3. Build the project:
+3. Access the swagger:
 
-   ```bash
-   ./gradlew clean build
    ```
-
-4. Run the application:
-   ```bash
-   ./gradlew bootRun
+   https://localhost:8080/swagger-ui.html
    ```
 
 The application will start on port 8080 by default.
