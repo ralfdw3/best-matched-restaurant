@@ -1,6 +1,7 @@
 # Best Matched Restaurant Finder
 
-A Spring Boot application that helps users find the best-matched restaurants based on various criteria such as cuisine type, customer rating, distance, and price.
+A Spring Boot application that helps users find the best-matched restaurants based on various criteria such as cuisine
+type, customer rating, distance, and price.
 
 ## Project Structure
 
@@ -51,7 +52,7 @@ src/
 
 3. Access the swagger:
 
-   ```
+   ```html
    https://localhost:8080/swagger-ui.html
    ```
 
