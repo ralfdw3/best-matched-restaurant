@@ -4,10 +4,10 @@ import io.challenge.bestmatched.restaurants.dto.SearchRestaurantInput;
 import io.challenge.bestmatched.restaurants.dto.SearchRestaurantInput.SearchRestaurantInputBuilder;
 import io.challenge.bestmatched.restaurants.dto.SearchRestaurantOutput;
 import io.challenge.bestmatched.restaurants.dto.SearchRestaurantOutput.SearchRestaurantOutputBuilder;
-import io.challenge.bestmatched.restaurants.model.Cuisine;
-import io.challenge.bestmatched.restaurants.model.Cuisine.CuisineBuilder;
-import io.challenge.bestmatched.restaurants.model.Restaurant;
-import io.challenge.bestmatched.restaurants.model.Restaurant.RestaurantBuilder;
+import io.challenge.bestmatched.restaurants.entity.Cuisine;
+import io.challenge.bestmatched.restaurants.entity.Cuisine.CuisineBuilder;
+import io.challenge.bestmatched.restaurants.entity.Restaurant;
+import io.challenge.bestmatched.restaurants.entity.Restaurant.RestaurantBuilder;
 
 import java.math.BigDecimal;
 

@@ -1,7 +1,7 @@
 package io.challenge.bestmatched.restaurants.service.filters;
 
 import io.challenge.bestmatched.restaurants.dto.SearchRestaurantInput;
-import io.challenge.bestmatched.restaurants.model.Restaurant;
+import io.challenge.bestmatched.restaurants.entity.Restaurant;
 import jakarta.persistence.criteria.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -2,7 +2,7 @@ package io.challenge.bestmatched.restaurants.service;
 
 import io.challenge.bestmatched.restaurants.dto.SearchRestaurantInput;
 import io.challenge.bestmatched.restaurants.dto.SearchRestaurantOutput;
-import io.challenge.bestmatched.restaurants.model.Restaurant;
+import io.challenge.bestmatched.restaurants.entity.Restaurant;
 import io.challenge.bestmatched.restaurants.repository.RestaurantRepository;
 import io.challenge.bestmatched.restaurants.service.filters.FilterStrategy;
 import jakarta.persistence.criteria.CriteriaBuilder;

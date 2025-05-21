@@ -1,7 +1,7 @@
 package io.challenge.bestmatched.restaurants.config;
 
-import io.challenge.bestmatched.restaurants.model.Cuisine;
-import io.challenge.bestmatched.restaurants.model.Restaurant;
+import io.challenge.bestmatched.restaurants.entity.Cuisine;
+import io.challenge.bestmatched.restaurants.entity.Restaurant;
 import io.challenge.bestmatched.restaurants.repository.CuisineRepository;
 import io.challenge.bestmatched.restaurants.repository.RestaurantRepository;
 import jakarta.annotation.PostConstruct;

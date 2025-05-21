@@ -1,4 +1,4 @@
-package io.challenge.bestmatched.restaurants.model;
+package io.challenge.bestmatched.restaurants.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

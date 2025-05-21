@@ -1,4 +1,4 @@
-package io.challenge.bestmatched.restaurants.model;
+package io.challenge.bestmatched.restaurants.entity;
 
 import io.challenge.bestmatched.restaurants.dto.SearchRestaurantOutput;
 import jakarta.persistence.*;
